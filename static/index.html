@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Email Sender by Ahnaf Wafiq</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous"
+        />
+        <style>
+            body {
+                margin: 16px;
+                background-color: #111;
+            }
+            h1,
+            label,
+            p {
+                color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            EmailSender <small style="font-size: 1rem">by Ahnaf Wafiq</small>
+        </h1>
+        <form action="/sendmail" method="post">
+            <div class="mb-3">
+                <label for="email">Reciever: </label>
+                <input
+                    class="form-control"
+                    data-to
+                    type="email"
+                    name="to"
+                    placeholder="Reciever: "
+                    required
+                />
+            </div>
+            <div class="mb-3">
+                <label for="email">Subject: </label>
+                <input
+                    class="form-control"
+                    data-subject
+                    type="test"
+                    name="subject"
+                    placeholder="Subject: "
+                    required
+                />
+            </div>
+            <label for="body">Email Body:</label>
+            <div class="mb-3">
+                <textarea
+                    class="form-control"
+                    data-body
+                    name="body"
+                    required
+                    placeholder="Email Body: "
+                ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p></p>
+            <p class="text-danger"></p>
+        </form>
+        <script>
+            document.querySelector("form").addEventListener("submit", (e) => {
+                e.preventDefault();
+                const reciever = document.querySelector("[data-to]");
+                const subject = document.querySelector("[data-subject]");
+                const body = document.querySelector("[data-body]");
+                fetch("/sendmail", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        to: reciever.value,
+                        subject: subject.value,
+                        body: body.value,
+                    }),
+                }).then((res) => {
+                    if (res.ok) {
+                        res.json().then((data) => {
+                            if (data.error) {
+                                document.querySelector("p").innerText =
+                                    "Something went wrong! Please try again. ";
+                                document.querySelector(
+                                    ".text-danger"
+                                ).innerText = data.message;
+                            } else {
+                                document.querySelector("p").innerText =
+                                    "Email sent succesfully!";
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
