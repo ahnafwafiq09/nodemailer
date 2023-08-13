@@ -1,36 +1,37 @@
 {
-  "name": "nodemailer",
-  "version": "1.0.0",
-  "description": " A Node.js and Express email app",
-  "main": "app.js",
-  "type": "module",
-  "scripts": {
-    "test": "tsc --noEmit",
-    "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\"",
-    "build": "tsc",
-    "start": "node dist/app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ahnafwafiq09/nodemailer.git"
-  },
-  "author": "Ahnaf Wafiq",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ahnafwafiq09/nodemailer/issues"
-  },
-  "homepage": "https://github.com/ahnafwafiq09/nodemailer#readme",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.4"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.4.10",
-    "@types/nodemailer": "^6.4.9",
-    "concurrently": "^8.2.0",
-    "nodemon": "^3.0.1",
-    "typescript": "^5.1.6"
-  }
+    "name": "nodemailer",
+    "version": "1.0.0",
+    "description": " A Node.js and Express email app",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "test": "tsc --noEmit",
+        "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\"",
+        "build": "tsc",
+        "start": "node dist/app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ahnafwafiq09/nodemailer.git"
+    },
+    "author": "Ahnaf Wafiq",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ahnafwafiq09/nodemailer/issues"
+    },
+    "homepage": "https://github.com/ahnafwafiq09/nodemailer#readme",
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "nodemailer": "^6.9.4"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.17",
+        "@types/node": "^20.4.10",
+        "@types/nodemailer": "^6.4.9",
+        "concurrently": "^8.2.0",
+        "nodemon": "^3.0.1",
+        "prettier": "^3.0.1",
+        "typescript": "^5.1.6"
+    }
 }

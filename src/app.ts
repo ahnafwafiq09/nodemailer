@@ -12,7 +12,6 @@ app.listen(process.env.PORT, () => {
 
 // Nodemailer config
 import nodemailer from "nodemailer";
-import { promiseHooks } from "v8";
 const mail = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
@@ -24,14 +23,6 @@ const mail = nodemailer.createTransport({
 });
 
 import { readFileSync } from "fs";
-
-mail.verify((err, success) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log(success);
-    }
-});
 
 app.route("/").get((_, res) => {
     const html = readFileSync("./static/index.html", "utf-8");
@@ -63,13 +54,12 @@ app.route("/sendmail")
             });
         }
         try {
-            const promise = await mail.sendMail({
+            await mail.sendMail({
                 from: "no-reply@ahnafwafiq.com",
                 to: to,
                 subject: subject,
                 text: body,
             });
-            console.log(promise);
         } catch (err) {
             res.status(418).send({
                 error: true,
